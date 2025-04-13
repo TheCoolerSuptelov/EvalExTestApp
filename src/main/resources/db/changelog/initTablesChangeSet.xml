@@ -35,8 +35,16 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
+            <column name="CALCULATION_CONTEXT" type="BIGINT"/>
+            <column name="CALCULATION_LOG" type="BIGINT"/>
             <column name="FORMULA_ID" type="BIGINT"/>
             <column name="FORMULA_EVALUATION_RESULT" type="NUMERIC(32,8)"/>
+        </createTable>
+
+        <createTable tableName="CALCULATION_CONTEXT">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
         </createTable>
     </changeSet>
 

@@ -1,8 +1,10 @@
 package com.example.demo;
 
+import com.example.demo.repository.CalculationContextRepository;
 import com.example.demo.repository.CalculationLogRepository;
 import com.example.demo.repository.FormulaRepository;
 import com.example.demo.repository.IndicatorsDataRepository;
+import com.example.demo.repository.entity.CalculationContext;
 import com.example.demo.repository.entity.CalculationLog;
 import com.example.demo.repository.entity.Formula;
 import com.example.demo.repository.entity.IndicatorsData;
@@ -24,6 +26,8 @@ public class PersistenceLayerTest {
 	private FormulaRepository formulaRepository;
 	@Autowired
 	private IndicatorsDataRepository indicatorsDataRepository;
+	@Autowired
+	private CalculationContextRepository calculationContextRepository;
 
 
 	@Test
@@ -31,12 +35,17 @@ public class PersistenceLayerTest {
 		var resFormula = formulaRepository.save(
 						new Formula().setFormula("(a+b)").setOrder(4)
 		);
+
+		var resCalcContext = calculationContextRepository.save(new CalculationContext());
 		var res = calculationLogRepository.save(
 						new CalculationLog()
 										.setEvaluationResult(new BigDecimal("10.2231"))
+										.setCalculationContext(AggregateReference.to(resCalcContext.getId()))
 										.setFormulaId(AggregateReference.to(resFormula.getId())));
 
 		assertNotNull(res.getId());
+		assertNotNull(res.getCalculationContext());
+		assertNotNull(res.getFormulaId());
 	}
 
 	@Test
@@ -57,4 +66,11 @@ public class PersistenceLayerTest {
 
 		assertNotNull(res.getId());
 	}
+
+	@Test
+	void givenCalculationContextRepository(){
+		var res = calculationContextRepository.save(new CalculationContext());
+		assertNotNull(res.getId());
+	}
+
 }

@@ -20,6 +20,9 @@ public class CalculationLog {
     @Id
     private Long id;
 
+    @Column("CALCULATION_CONTEXT")
+    private AggregateReference<CalculationLog,Long> calculationContext;
+
     @Column("FORMULA_ID")
     private AggregateReference<Formula, Long> formulaId;
 
