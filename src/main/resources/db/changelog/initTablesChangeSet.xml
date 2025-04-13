@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="initTablesChangeSet.xml" author="k.suptelov">
+        <preConditions>
+            <not>
+                <tableExists tableName="formulas"/>
+                <tableExists tableName="indicators_data"/>
+                <tableExists tableName="calculation_log"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="formulas">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="FORMULA" type="varchar"/>
+            <column name="ORDER" type="INT"/>
+        </createTable>
+
+        <createTable tableName="indicators_data">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="REPORT_FORM" type="varchar"/>
+            <column name="INDICATOR" type="varchar"/>
+            <column name="REPORT_DATE" type="DATE"/>
+            <column name="INDICATOR_VALUE" type="NUMERIC(32,8)"/>
+        </createTable>
+
+        <createTable tableName="calculation_log">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="FORMULA_ID" type="BIGINT"/>
+            <column name="FORMULA_EVALUATION_RESULT" type="NUMERIC(32,8)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
