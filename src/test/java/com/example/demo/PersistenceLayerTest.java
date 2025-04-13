@@ -14,7 +14,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -28,6 +32,23 @@ public class PersistenceLayerTest {
 	private IndicatorsDataRepository indicatorsDataRepository;
 	@Autowired
 	private CalculationContextRepository calculationContextRepository;
+
+	@Test
+	void shouldFindAllByReportDate(){
+
+		indicatorsDataRepository.saveAll(
+						List.of(
+										new IndicatorsData().setIndicator("10").setIndicatorValue(BigDecimal.ONE).setReportDate(LocalDate.of(2022,12,1)),
+										new IndicatorsData().setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,11,1)),
+										new IndicatorsData().setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(null)
+						)
+		);
+
+		var res = indicatorsDataRepository.findByReportDate(LocalDate.of(2022,12,1));
+
+
+		assertThat(res, hasSize(1));
+	}
 
 
 	@Test
