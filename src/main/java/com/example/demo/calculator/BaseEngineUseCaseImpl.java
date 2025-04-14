@@ -16,11 +16,11 @@ import java.util.List;
 public class BaseEngineUseCaseImpl {
 
 
-	public void basicExample(){
+	public EvaluationValue basicExample(){
 		Expression expression = new Expression("(a + b) * (a - b)");
-
+		EvaluationValue result;
 		try {
-			EvaluationValue result = expression
+			result = expression
 							.with("a", 3.5)
 							.and("b", 2.5)
 							.evaluate();
@@ -29,6 +29,8 @@ public class BaseEngineUseCaseImpl {
 		} catch (ParseException e) {
 			throw new RuntimeException(e);
 		}
+
+		return result;
 	}
 
 	public EvaluationValue sumExample(){
