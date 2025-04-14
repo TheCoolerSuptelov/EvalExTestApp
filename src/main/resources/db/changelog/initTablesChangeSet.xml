@@ -19,7 +19,7 @@
             </column>
             <column name="FORMULA" type="varchar"/>
             <column name="ORDER" type="INT"/>
-            <column name="name" type="varchar"/>
+            <column name="NAME" type="varchar"/>
         </createTable>
 
         <createTable tableName="indicators_data">
@@ -29,6 +29,7 @@
             <column name="REPORT_FORM" type="varchar"/>
             <column name="INDICATOR" type="varchar"/>
             <column name="REPORT_DATE" type="DATE"/>
+            <column name="REG_NUM" type="varchar"/>
             <column name="INDICATOR_VALUE" type="NUMERIC(32,8)"/>
         </createTable>
 

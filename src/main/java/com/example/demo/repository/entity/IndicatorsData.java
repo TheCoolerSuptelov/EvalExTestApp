@@ -26,5 +26,7 @@ public class IndicatorsData {
     private BigDecimal indicatorValue;
     @Column("REPORT_DATE")
     private LocalDate reportDate;
+    @Column("REG_NUM")
+    private String regNum;
 
 }

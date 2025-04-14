@@ -10,5 +10,6 @@ public interface IndicatorsDataRepository extends ListCrudRepository<IndicatorsD
 
 
 	List<IndicatorsData> findByReportDate(LocalDate localDate);
+	List<IndicatorsData> findByRegNum(String regNum);
 
 }

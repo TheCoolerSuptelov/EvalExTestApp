@@ -18,6 +18,6 @@ public class Formula {
     private String formula;
     @Column("ORDER")
     private Integer order;
-    @Column("name")
+    @Column("NAME")
     private String name;
 }
