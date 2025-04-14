@@ -6,10 +6,10 @@ import com.example.demo.repository.IndicatorsDataRepository;
 import com.example.demo.repository.entity.CalculationContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import java.time.LocalDate;
+import org.springframework.stereotype.Service;
 
 @Slf4j
+@Service
 @RequiredArgsConstructor
 public class PersistenceEngineUseCaseImpl {
 	private final CalculationLogRepository calcLogRepo;
@@ -17,13 +17,10 @@ public class PersistenceEngineUseCaseImpl {
 	private final FormulaRepository formulaRepository;
 
 
-	public CalculationContext calculateOnDate(LocalDate reportDate){
+	public CalculationContext calculateOnClient(String regNum) {
 
 
-		var current = indicatorsDataRepo.findByReportDate(reportDate);
-
-
-
+		var current = indicatorsDataRepo.findByRegNum(regNum);
 
 
 		return null;

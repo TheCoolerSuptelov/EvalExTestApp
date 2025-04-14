@@ -22,17 +22,17 @@ class PersistenceEngineUseCaseImplTest {
 	private IndicatorsDataRepository indicatorsDataRepository;
 
 	@Test
-	void calculateOnDate() {
+	void calculateOnClient() {
 		indicatorsDataRepository.saveAll(
 						List.of(
-										new IndicatorsData().setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.ONE).setReportDate(LocalDate.of(2022,10,1)),
-										new IndicatorsData().setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,11,1)),
-										new IndicatorsData().setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(null)
+										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.ONE).setReportDate(LocalDate.of(2022,10,1)),
+										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,11,1)),
+										new IndicatorsData().setRegNum("2").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(null)
 						)
 		);
 
 
-		sut.calculateOnDate(LocalDate.of(2022,11,1));
+		var res = sut.calculateOnClient("2");
 
 	}
 }
