@@ -35,32 +35,37 @@ public class PersistenceLayerTest {
 	private CalculationContextRepository calculationContextRepository;
 
 	@Test
-	void shouldFindAllByReportDate(){
+	void shouldFindAllByReportDate() {
 
-		indicatorsDataRepository.saveAll(
-						List.of(
-										new IndicatorsData().setIndicator("10").setIndicatorValue(BigDecimal.ONE).setReportDate(LocalDate.of(2022,12,1)),
-										new IndicatorsData().setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,11,1)),
-										new IndicatorsData().setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(null)
-						)
-		);
+		indicatorsDataRepository.saveAll(List.of(new IndicatorsData().setIndicator("10")
+										.setIndicatorValue(BigDecimal.ONE)
+										.setReportDate(LocalDate.of(2022, 12, 1)),
+						new IndicatorsData().setIndicator("10")
+										.setIndicatorValue(BigDecimal.TEN)
+										.setReportDate(LocalDate.of(2022, 11, 1)),
+						new IndicatorsData().setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(null)));
 
-		var res = indicatorsDataRepository.findByReportDate(LocalDate.of(2022,12,1));
+		var res = indicatorsDataRepository.findByReportDate(LocalDate.of(2022, 12, 1));
 
 
 		assertThat(res, hasSize(1));
 	}
 
 	@Test
-	void shouldFindByRegNum(){
+	void shouldFindByRegNum() {
 
-		indicatorsDataRepository.saveAll(
-						List.of(
-										new IndicatorsData().setRegNum("2").setIndicator("10").setIndicatorValue(BigDecimal.ONE).setReportDate(LocalDate.of(2022,12,1)),
-										new IndicatorsData().setRegNum("2").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,11,1)),
-										new IndicatorsData().setRegNum("2").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(null)
-						)
-		);
+		indicatorsDataRepository.saveAll(List.of(new IndicatorsData().setRegNum("2")
+										.setIndicator("10")
+										.setIndicatorValue(BigDecimal.ONE)
+										.setReportDate(LocalDate.of(2022, 12, 1)),
+						new IndicatorsData().setRegNum("2")
+										.setIndicator("10")
+										.setIndicatorValue(BigDecimal.TEN)
+										.setReportDate(LocalDate.of(2022, 11, 1)),
+						new IndicatorsData().setRegNum("2")
+										.setIndicator("10")
+										.setIndicatorValue(BigDecimal.TEN)
+										.setReportDate(null)));
 
 		var res = indicatorsDataRepository.findByRegNum("2");
 
@@ -70,17 +75,13 @@ public class PersistenceLayerTest {
 
 
 	@Test
-	void calculationLogRepository(){
-		var resFormula = formulaRepository.save(
-						new Formula().setFormula("(a+b)").setOrder(4)
-		);
+	void calculationLogRepository() {
+		var resFormula = formulaRepository.save(new Formula().setFormula("(a+b)").setOrder(4));
 
 		var resCalcContext = calculationContextRepository.save(new CalculationContext());
-		var res = calculationLogRepository.save(
-						new CalculationLog()
-										.setEvaluationResult(new BigDecimal("10.2231"))
-										.setCalculationContext(AggregateReference.to(resCalcContext.getId()))
-										.setFormulaId(AggregateReference.to(resFormula.getId())));
+		var res = calculationLogRepository.save(new CalculationLog().setEvaluationResult(new BigDecimal("10.2231"))
+						.setCalculationContext(AggregateReference.to(resCalcContext.getId()))
+						.setFormulaId(AggregateReference.to(resFormula.getId())));
 
 		assertNotNull(res.getId());
 		assertNotNull(res.getCalculationContext());
@@ -89,9 +90,7 @@ public class PersistenceLayerTest {
 
 	@Test
 	void givenCalculationLogRepo() {
-		var res = formulaRepository.save(
-						new Formula().setFormula("(a+b)").setOrder(4).setName("ROI")
-		);
+		var res = formulaRepository.save(new Formula().setFormula("(a+b)").setOrder(4).setName("ROI"));
 
 		assertNotNull(res.getId());
 		assertEquals("ROI", res.getName());
@@ -109,7 +108,7 @@ public class PersistenceLayerTest {
 	}
 
 	@Test
-	void givenCalculationContextRepository(){
+	void givenCalculationContextRepository() {
 		var res = calculationContextRepository.save(new CalculationContext());
 		assertNotNull(res.getId());
 	}
