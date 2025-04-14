@@ -19,6 +19,7 @@
             </column>
             <column name="FORMULA" type="varchar"/>
             <column name="ORDER" type="INT"/>
+            <column name="name" type="varchar"/>
         </createTable>
 
         <createTable tableName="indicators_data">

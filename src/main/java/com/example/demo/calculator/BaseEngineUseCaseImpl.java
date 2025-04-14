@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -44,6 +45,32 @@ public class BaseEngineUseCaseImpl {
 		} catch (ParseException e) {
 			throw new RuntimeException(e);
 		}
+		return res;
+	}
+
+
+	public EvaluationValue maps(){
+		Expression expression = new Expression("data.current.oneZeroOne.H12 + data.current_minus_1.oneZeroOne.H12");
+
+
+		EvaluationValue res = null;
+		try {
+			res = expression
+							.with("data",
+											Map.of(
+															"current", Map.of("oneZeroOne", Map.of("H12", 10)),
+															"current_minus_1", Map.of("oneZeroOne", Map.of("H12", 100))
+
+											)
+
+							)
+							.evaluate();
+		} catch (EvaluationException e) {
+			throw new RuntimeException(e);
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
+
 		return res;
 	}
 

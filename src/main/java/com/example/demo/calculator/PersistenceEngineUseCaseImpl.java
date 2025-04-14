@@ -17,7 +17,13 @@ public class PersistenceEngineUseCaseImpl {
 	private final FormulaRepository formulaRepository;
 
 
-	public CalculationContext calculateOnDate(LocalDate calculationDate){
+	public CalculationContext calculateOnDate(LocalDate reportDate){
+		reportDate = LocalDate.of(reportDate.getYear(), reportDate.getMonth(), 1);
+
+		var current = indicatorsDataRepo.findByReportDate(reportDate);
+		var prevYear = indicatorsDataRepo.findByReportDate(reportDate.minusYears(1));
+
+
 
 
 
