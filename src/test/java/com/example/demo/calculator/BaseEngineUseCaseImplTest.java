@@ -32,4 +32,19 @@ class BaseEngineUseCaseImplTest {
 
 		assertEquals("110", res.getNumberValue().toPlainString());
 	}
+
+
+	@Test
+	void mapsSimple(){
+		var res = new BaseEngineUseCaseImpl().mapsSimple();
+
+		assertEquals("110", res.getNumberValue().toPlainString());
+	}
+
+	@Test
+	void mapsSimpleAnotherTry(){
+		var res = new BaseEngineUseCaseImpl().mapsSimpleAnotherTry();
+
+		assertEquals("110", res.getNumberValue().toPlainString());
+	}
 }

@@ -4,6 +4,7 @@ import com.example.demo.repository.CalculationLogRepository;
 import com.example.demo.repository.FormulaRepository;
 import com.example.demo.repository.IndicatorsDataRepository;
 import com.example.demo.repository.entity.CalculationContext;
+import com.example.demo.repository.entity.IndicatorsData;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,10 @@ public class PersistenceEngineUseCaseImpl {
 
 		var current = indicatorsDataRepo.findByRegNum(regNum);
 
+
+		for (IndicatorsData indicatorData : current) {
+			
+		}
 
 		return null;
 	}

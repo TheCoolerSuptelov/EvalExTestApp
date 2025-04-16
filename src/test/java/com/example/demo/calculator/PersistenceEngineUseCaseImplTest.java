@@ -25,8 +25,9 @@ class PersistenceEngineUseCaseImplTest {
 	void calculateOnClient() {
 		indicatorsDataRepository.saveAll(
 						List.of(
-										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.ONE).setReportDate(LocalDate.of(2022,10,1)),
-										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,11,1)),
+										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.ONE).setReportDate(LocalDate.of(2022,12,1)),
+										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,9,1)),
+										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,6,1)),
 										new IndicatorsData().setRegNum("2").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(null)
 						)
 		);
