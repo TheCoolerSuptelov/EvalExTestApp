@@ -15,7 +15,9 @@ import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
@@ -59,6 +61,10 @@ public class PersistenceLayerTest {
 										.setIndicatorValue(BigDecimal.ONE)
 										.setReportDate(LocalDate.of(2022, 12, 1)),
 						new IndicatorsData().setRegNum("2")
+										.setIndicator("1232")
+										.setIndicatorValue(BigDecimal.TEN)
+										.setReportDate(LocalDate.of(2022, 11, 1)),
+						new IndicatorsData().setRegNum("2")
 										.setIndicator("10")
 										.setIndicatorValue(BigDecimal.TEN)
 										.setReportDate(LocalDate.of(2022, 11, 1)),
@@ -67,8 +73,20 @@ public class PersistenceLayerTest {
 										.setIndicatorValue(BigDecimal.TEN)
 										.setReportDate(null)));
 
-		var res = indicatorsDataRepository.findByRegNum("2");
+		var res = indicatorsDataRepository.findByRegNumOrderByReportDateDesc("2");
 
+		var arr = new ArrayList<String>();
+		LocalDate curDate = LocalDate.MIN;
+		var offset = -1;
+		for (int i = 0; i < res.size(); i++) {
+
+			var curEl = res.get(i);
+
+			if (!Objects.equals(curEl.getReportForm(),curDate)){
+				curDate = curEl.getReportDate();
+				offset ++;
+			}
+		}
 
 		assertThat(res, hasSize(3));
 	}

@@ -26,8 +26,11 @@ class PersistenceEngineUseCaseImplTest {
 		indicatorsDataRepository.saveAll(
 						List.of(
 										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.ONE).setReportDate(LocalDate.of(2022,12,1)),
-										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,9,1)),
-										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,6,1)),
+										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("11").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,9,1)),
+										new IndicatorsData().setRegNum("2").setReportForm("101").setIndicator("12").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,6,1)),
+										new IndicatorsData().setRegNum("2").setReportForm("135").setIndicator("13").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,6,1)),
+										new IndicatorsData().setRegNum("2").setReportForm("135").setIndicator("14").setIndicatorValue(BigDecimal.ONE).setReportDate(LocalDate.of(2022,12,1)),
+										new IndicatorsData().setRegNum("2").setReportForm("135").setIndicator("15").setIndicatorValue(BigDecimal.TEN).setReportDate(LocalDate.of(2022,9,1)),
 										new IndicatorsData().setRegNum("2").setIndicator("10").setIndicatorValue(BigDecimal.TEN).setReportDate(null)
 						)
 		);
